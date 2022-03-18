@@ -1,0 +1,54 @@
+<script setup>
+defineProps({
+  letter: String,
+  isChecked: Boolean,
+  isPresent: Boolean,
+  isCorrect: Boolean,
+});
+</script>
+
+<template>
+  <div
+    :class="[
+      $style.letter,
+      {
+        [$style.absent]: isChecked && !isPresent,
+        [$style.present]: isPresent,
+        [$style.correct]: isCorrect,
+      },
+    ]"
+  >
+    {{ letter }}
+  </div>
+</template>
+
+<style module>
+.letter {
+  text-transform: uppercase;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #3a3a3c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: 800;
+  margin: 2px;
+}
+
+.absent {
+  border: none;
+  background-color: #3a3a3c;
+}
+
+.present {
+  border: none;
+  background-color: #b59f3b;
+}
+
+.correct {
+  border: none;
+  background-color: #538d4e;
+}
+</style>
