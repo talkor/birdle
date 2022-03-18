@@ -13,8 +13,9 @@ defineProps({
       $style.letter,
       {
         [$style.absent]: isChecked && !isPresent,
-        [$style.present]: isPresent,
-        [$style.correct]: isCorrect,
+        [$style.present]: isChecked && isPresent,
+        [$style.correct]: isChecked && isCorrect,
+        [$style.reveal]: isChecked,
       },
     ]"
   >
@@ -50,5 +51,22 @@ defineProps({
 .correct {
   border: none;
   background-color: #538d4e;
+}
+
+@keyframes example {
+  from {
+    transform: rotateX(100deg);
+  }
+  to {
+    transform: rotateX(1);
+  }
+}
+
+.reveal {
+  transition: 0.6s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  animation-name: example;
+  animation-duration: 0.8s;
 }
 </style>

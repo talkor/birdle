@@ -18,8 +18,11 @@ import TheGame from "./components/TheGame.vue";
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 h1 {

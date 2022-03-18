@@ -1,5 +1,8 @@
 <script setup>
+import { ref, watch } from "vue";
 import GuessLetter from "./GuessLetter.vue";
+
+const currentRevealed = ref(-1);
 
 const props = defineProps({
   guess: Array,
@@ -21,6 +24,24 @@ const isCorrect = (letter, position) => {
 
   return letter && props.word[position] === letter;
 };
+
+watch(
+  () => props.isChecked,
+  (currentValue) => {
+    if (currentValue) {
+      reveal();
+    }
+  }
+);
+
+const reveal = () => {
+  currentRevealed.value++;
+  setTimeout(() => {
+    if (currentRevealed.value < 4) {
+      reveal();
+    }
+  }, 400);
+};
 </script>
 
 <template>
@@ -30,7 +51,7 @@ const isCorrect = (letter, position) => {
       :key="key"
       :letter="letter"
       :word="word"
-      :isChecked="isChecked"
+      :isChecked="key <= currentRevealed"
       :isPresent="isPresent(letter)"
       :isCorrect="isCorrect(letter, key)"
     />
@@ -40,5 +61,15 @@ const isCorrect = (letter, position) => {
 <style module>
 .row {
   display: flex;
+}
+
+.reveal:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.reveal:nth-child(3) {
+  animation-delay: 1s;
+}
+.reveal:nth-child(4) {
+  animation-delay: 1.5s;
 }
 </style>
