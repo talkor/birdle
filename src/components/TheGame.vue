@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import GuessRow from "./GuessRow.vue";
 import TheKeyboard from "./TheKeyboard.vue";
+import BaseModal from "./BaseModal.vue";
 
 const WORD = "BIRD";
 const NUM_GUESSES = 6;
@@ -10,6 +11,8 @@ const WORD_LENGTH = 4;
 const currentGuess = ref(0);
 const currentLetter = ref(0);
 const isGameOn = ref(true);
+const showModal = ref(false);
+const isWon = ref(false);
 
 const guesses = ref([
   ["", "", "", ""],
@@ -35,7 +38,10 @@ const onSubmitGuess = () => {
   if (guesses.value[currentGuess.value].join("") === WORD) {
     currentGuess.value++;
     isGameOn.value = false;
-    console.log("Game Over, you won!");
+    isWon.value = true;
+    setTimeout(() => {
+      showModal.value = true;
+    }, 2000);
     return;
   }
 
@@ -47,7 +53,10 @@ const onSubmitGuess = () => {
 
   if (currentGuess.value === NUM_GUESSES) {
     isGameOn.value = false;
-    console.log("Game Over, you lost");
+    isWon.value = false;
+    setTimeout(() => {
+      showModal.value = true;
+    }, 2000);
   }
 };
 
@@ -101,6 +110,25 @@ onUnmounted(() => {
     @letterDelete="onLetterDelete"
     @submitGuess="onSubmitGuess"
   />
+  <BaseModal :show="showModal" @close="showModal = false">
+    <h1 v-if="isWon">BIRD is the WORD!</h1>
+    <template v-else>
+      <h1>Don't you know about the BIRD?</h1>
+      <h4 :class="$style.subtitle">
+        Everybody knows that the BIRD is the WORD!
+      </h4>
+    </template>
+    <img :class="$style.gif" src="../assets/gif.gif" />
+    <iframe
+      width="100%"
+      height="200px"
+      src="https://www.youtube.com/embed/9Gc4QTqslN4?controls=0&autoplay=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </BaseModal>
 </template>
 
 <style module>
@@ -128,5 +156,13 @@ onUnmounted(() => {
 
 .spacer {
   width: 25px;
+}
+
+.gif {
+  width: 100%;
+}
+
+.subtitle {
+  margin-bottom: 10px;
 }
 </style>
