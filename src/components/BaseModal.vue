@@ -31,11 +31,12 @@ defineProps({ show: Boolean });
 .modal {
   width: 50vw;
   background-color: #181818;
-  min-height: 50vh;
+  max-height: 70vh;
   border-radius: 4px;
   animation: jumpin 0.4s;
   position: relative;
   text-align: center;
+  overflow-y: auto;
 }
 
 .closeButton {
