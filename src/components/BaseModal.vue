@@ -39,6 +39,11 @@ defineProps({ show: Boolean });
   overflow-y: auto;
 }
 
+@media (max-width: 780px) {
+  .modal {
+    width: 80vh;
+  }
+}
 .closeButton {
   border: 0;
   background: none;
