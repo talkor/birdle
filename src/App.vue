@@ -34,4 +34,8 @@ h1 {
   font-size: 32px;
   margin-bottom: 20px;
 }
+
+* {
+  touch-action: manipulation;
+}
 </style>
