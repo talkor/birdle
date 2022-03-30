@@ -53,7 +53,7 @@ defineProps({
   background-color: #538d4e;
 }
 
-@keyframes example {
+@keyframes reveal {
   from {
     transform: rotateX(100deg);
   }
@@ -66,7 +66,7 @@ defineProps({
   transition: 0.6s;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  animation-name: example;
+  animation-name: reveal;
   animation-duration: 0.8s;
 }
 </style>
