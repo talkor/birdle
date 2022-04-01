@@ -5,6 +5,9 @@ import TheGame from "./components/TheGame.vue";
 <template>
   <header>
     <h1>BIRDLE</h1>
+    <a href="https://github.com/talkor/birdle"
+      ><img :class="$style.githubLink" src="./assets/github.png" alt="github"
+    /></a>
   </header>
 
   <main>
@@ -37,5 +40,18 @@ h1 {
 
 * {
   touch-action: manipulation;
+}
+</style>
+
+<style module>
+.githubLink {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+}
+
+.githubLink:hover {
+  opacity: 0.7;
 }
 </style>
