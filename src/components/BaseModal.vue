@@ -7,13 +7,12 @@ defineProps({ show: Boolean });
   <div v-if="show" :class="$style.overlay" @click="emit('close')">
     <div :class="$style.modal">
       <div :class="$style.header">
-        <button :class="$style.closeButton">Close</button>
+        <button :class="$style.closeButton">🆇</button>
       </div>
       <div :class="$style.content"><slot /></div>
     </div>
   </div>
 </template>
-
 <style module>
 .overlay {
   width: 100%;
@@ -60,7 +59,7 @@ defineProps({ show: Boolean });
 }
 
 .content {
-  padding: 0 20px 20px 20px;
+  padding: 0 40px 60px 40px;
 }
 
 @keyframes jumpin {

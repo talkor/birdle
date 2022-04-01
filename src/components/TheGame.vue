@@ -118,16 +118,17 @@ onUnmounted(() => {
         Everybody knows that the BIRD is the WORD!
       </h4>
     </template>
-    <img :class="$style.gif" src="../assets/gif.gif" />
-    <iframe
-      width="100%"
-      height="200px"
-      src="https://www.youtube.com/embed/9Gc4QTqslN4?controls=0&autoplay=1"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+    <div :class="$style.container">
+      <img :class="$style.gif" src="../assets/gif.gif" />
+      <iframe
+        height="225px"
+        src="https://www.youtube.com/embed/9Gc4QTqslN4?controls=0&autoplay=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    </div>
   </BaseModal>
 </template>
 
@@ -164,5 +165,17 @@ onUnmounted(() => {
 
 .subtitle {
   margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.container img {
+  max-width: 300px;
 }
 </style>
